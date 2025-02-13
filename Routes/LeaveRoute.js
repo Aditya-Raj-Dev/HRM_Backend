@@ -1,5 +1,5 @@
 import express from 'express'
-import { LeaveAction, LeaveApply } from '../Controller/LeaveController'
+import { LeaveAction, LeaveApply } from '../Controller/LeaveController.js'
 
 const leaveRoute= express.Router()
 

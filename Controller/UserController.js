@@ -1,6 +1,7 @@
 import UserModel from "../Models/Users.js"
 import bcrypt from "bcrypt"
-import userRoute from "../../Routes/usersRoute.js";
+
+import jwt from "jsonwebtoken"
 
 export const CreateUser = async (req, res) => {
     let data = req.body;
@@ -75,6 +76,43 @@ export const UpdateUserById = async (req, res) => {
     }
     catch (err) {
         res.status(400).send({ err: err.message });
+    }
+}
+
+
+export const UserLogin = async (req, res) => {
+    const data = req.body
+    console.log(data, "data")
+    if (!data.email) {
+        return res.status(400).send({ err: "Email required" });
+    }
+    if (!data.password) {
+        return res.status(400).send({ err: "Password required" });
+    }
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(data.email)) {
+        res.status(400).send({ err: "Enter valid email" });
+        return;
+    }
+    try {
+        let user = await UserModel.findOne({ email: data.email })
+        console.log(user, "use")
+        if (!user) {
+            return res.status(400).send({ err: "Email doesn't exist" });
+        }
+        let checkpassword = bcrypt.compareSync(data.password, user.password)
+
+        if (!checkpassword) {
+            return res.status(401).send({ err: "Incorrect Password" });
+
+        }
+        const token = jwt.sign({ id: user._id, email: user.email, name: user.name },
+            process.env.JWT_TOKEN,
+            { expiresIn: "8h" })
+        res.send({token, user})
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ err: "Internal server error" });
     }
 }
 

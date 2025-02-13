@@ -1,5 +1,5 @@
 import express from "express";
-import { AttendanceCheckin, AttendanceCheckOut } from "../Controller/AttendanceController";
+import { AttendanceCheckin, AttendanceCheckOut } from "../Controller/AttendanceController.js";
 
 
 const attendanceRoute = express.Router()
