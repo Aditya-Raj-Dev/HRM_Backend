@@ -1,0 +1,6 @@
+node_modules
+.env
+.rest
+fnp-sa-shopify-0cd5101d7b87.json
+test.js
+test.rest
