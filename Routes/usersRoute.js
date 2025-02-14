@@ -16,4 +16,4 @@ userRoute.post("/update/:id",authenticateUserAccess,checkRoleMiddleware(["HR"]),
 
 userRoute.post("/login",UserLogin)
 
-export default userRoute
+export default userRoute 

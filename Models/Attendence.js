@@ -1,7 +1,7 @@
 import mongoose, { Mongoose } from "mongoose";
 
 const attendanceSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId },
     date: { type: Date, default: Date.now },
     checkInTime: { type: Date, required: true },
     checkOutTime: { type: Date, },
@@ -10,4 +10,4 @@ const attendanceSchema = new mongoose.Schema({
 
 const attendanceModel = mongoose.model("attendance", attendanceSchema);
 
-export default attendanceModel;
+export default attendanceModel;  

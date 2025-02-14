@@ -1,11 +1,14 @@
 import express from "express";
 import { AttendanceCheckin, AttendanceCheckOut } from "../Controller/AttendanceController.js";
+import { authenticateUserAccess, checkRoleMiddleware } from "../Middleware/authenticateUserAccess.js";
 
 
 const attendanceRoute = express.Router()
 
-attendanceRoute.post("/checkin", AttendanceCheckin)
+attendanceRoute.post("/checkin",authenticateUserAccess,
+  checkRoleMiddleware(["HR", "EMPLOYEE"]), AttendanceCheckin)
 
-attendanceRoute.post("/checkout", AttendanceCheckOut)
+attendanceRoute.post("/checkout",authenticateUserAccess,
+    checkRoleMiddleware(["HR", "EMPLOYEE"]), AttendanceCheckOut)
 
 export default attendanceRoute

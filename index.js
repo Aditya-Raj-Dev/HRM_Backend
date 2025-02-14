@@ -17,7 +17,7 @@ app.use(cors())
 app.use("/api/user",userRoute)
 app.use("/api/attendance",attendanceRoute)
 app.use("/api/leave",leaveRoute)
-app.use("/payroll",payrollRoute)
+app.use("/api/payroll",payrollRoute)
 
 const port=process.env.PORT || 1337
 
