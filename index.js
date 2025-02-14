@@ -14,6 +14,10 @@ const app=express();
 app.use(express.json())
 app.use(cors())
 
+app.get("/api/test",(req,res)=>{
+  res.send("working")
+})
+
 app.use("/api/user",userRoute)
 app.use("/api/attendance",attendanceRoute)
 app.use("/api/leave",leaveRoute)
