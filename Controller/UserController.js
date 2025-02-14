@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken"
 
 export const CreateUser = async (req, res) => {
     let data = req.body;
+    console.log(data)
     try {
         let user = await UserModel.findOne({ email: data?.email })
         if (user) {
@@ -24,11 +25,12 @@ export const CreateUser = async (req, res) => {
     } catch (err) {
         res.status(400).send({ err: err.message });
     }
-
+ 
 
 }
 
 export const GetAllUsers = async (req, res) => {
+    console.log(req.body,"body")
     try {
         const user = await UserModel.find({})
         res.status(201).send({ data: user })
@@ -98,7 +100,7 @@ export const UserLogin = async (req, res) => {
         let user = await UserModel.findOne({ email: data.email })
         console.log(user, "use")
         if (!user) {
-            return res.status(400).send({ err: "Email doesn't exist" });
+            return res.status(500).send({ err: "Email doesn't exist" });
         }
         let checkpassword = bcrypt.compareSync(data.password, user.password)
 
@@ -106,7 +108,7 @@ export const UserLogin = async (req, res) => {
             return res.status(401).send({ err: "Incorrect Password" });
 
         }
-        const token = jwt.sign({ id: user._id, email: user.email, name: user.name },
+        const token = jwt.sign({ id: user._id, email: user.email, name: user.name,role:user.role },
             process.env.JWT_TOKEN,
             { expiresIn: "8h" })
         res.send({token, user})
