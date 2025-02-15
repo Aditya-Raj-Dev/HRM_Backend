@@ -44,8 +44,9 @@ export const payrollCalculator = async (req, res) => {
       
             const presentDays = attendanceRecords.length;
       
-            
-            const netSalary = ((user.salary / totalDays) * (totalDays - (presentDays + totalLeaveDays))).toFixed(2);
+            console.log((user.salary / totalDays),'sal')
+            console.log( (totalDays - (presentDays + totalLeaveDays)))
+            const netSalary = ((user.salary / totalDays) *  (presentDays + totalLeaveDays)).toFixed(2);
       
             result.push({
               email: user.email,
@@ -57,7 +58,7 @@ export const payrollCalculator = async (req, res) => {
             });
           }
       
-          res.send(result)
+          res.send(result )
       
         } catch (error) {
           console.error('Error calculating salaries:', error);

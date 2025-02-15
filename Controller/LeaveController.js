@@ -34,7 +34,7 @@ export const AllLeave = async (req, res) => {
     try {
         let leaveData
         if(role==="HR"){
-            leaveData = await leaveModel.find({})
+            leaveData = await leaveModel.find({}).populate("userId", "email");
         }else{
             leaveData = await leaveModel.find({userId:id})
             console.log(leaveData,"leaveDat")

@@ -4,7 +4,7 @@ Frontend : https://github.com/Aditya-Raj-Dev/HRM_Frontend
 
 Live Deployed Links:====>
 Backend : https://hrm-backend-xpn8.onrender.com/api
-Frontend : https://thriving-taiyaki-2f068e.netlify.app/
+Frontend : https://thriving-taiyaki-2f068e.netlify.app/login
 
 Postman Collection:
 
@@ -28,4 +28,4 @@ Login Credentials (if applicable)====>
 Deployment Links ====>
 
 Backend : https://hrm-backend-xpn8.onrender.com/api
-Frontend : https://thriving-taiyaki-2f068e.netlify.app/
+Frontend : https://thriving-taiyaki-2f068e.netlify.app/login
